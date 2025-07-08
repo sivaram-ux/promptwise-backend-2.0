@@ -1,12 +1,12 @@
 import os
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
-from keys import key,SUPABASE_KEY,SUPABASE_URL#Get these from environment variables
+#from keys import key,SUPABASE_KEY,SUPABASE_URL#Get these from environment variables
 
 # Secure API Key Input
-if not os.environ.get("GOOGLE_API_KEY"):
-    os.environ["GOOGLE_API_KEY"] = key
-
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 # Init model
 model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
 
