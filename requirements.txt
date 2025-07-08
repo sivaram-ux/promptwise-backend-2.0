@@ -1,5 +1,6 @@
 fastapi
 uvicorn
 pydantic
-langchain[googleai]
+langchain
+langchain_google_genai
 supabase
