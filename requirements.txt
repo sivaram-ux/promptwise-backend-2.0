@@ -5,6 +5,6 @@ pydantic
 langchain
 langchain_google_genai
 aiohttp
-python-telegram-bot==20.8
+python-telegram-bot==20.7
 supabase
 httpx
