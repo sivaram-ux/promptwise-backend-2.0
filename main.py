@@ -26,7 +26,9 @@ from telegram.ext import (
 )
 import logging
 from io import StringIO
-from keys import TELEGRAM_BOT_TOKEN
+import os
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+
 import json
 import re
 
