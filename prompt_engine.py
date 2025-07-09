@@ -7,8 +7,9 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+
 # Init model
-model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
+model = init_chat_model("gemini-2.0-flash", model_provider="google_genai")
 
 modes = {
     "deep_research":"the prompt will be used by deep researching agent, it should enhance the quality such I get best research report covering each and every detail",
