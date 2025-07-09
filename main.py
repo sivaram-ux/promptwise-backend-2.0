@@ -237,8 +237,13 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ Cancelled.")
     return ConversationHandler.END
 
-async def run_bot():
-    app_telegram = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+def run_bot():
+    app_telegram = (
+        ApplicationBuilder()
+        .token(TELEGRAM_BOT_TOKEN)
+        .build()
+    )
+
     conv = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={
@@ -249,13 +254,11 @@ async def run_bot():
             ASK_FOLLOWUP + 11: [MessageHandler(filters.TEXT & ~filters.COMMAND, collect_answers)],
             ASK_EXPLAIN: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_explain)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
     )
     app_telegram.add_handler(conv)
-    await app_telegram.initialize()
-    await app_telegram.start()
-    await app_telegram.updater.start_polling()
-    await app_telegram.updater.wait()
+    app_telegram.run_polling()  # blocking, but clean
+
 
 
 if __name__ == "__main__":
