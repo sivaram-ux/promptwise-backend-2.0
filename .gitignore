@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .env
 keys.py
+for_firebase.py
+unmerged_main.py
+telegram_bot.py
