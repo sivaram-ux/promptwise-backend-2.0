@@ -237,7 +237,8 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ Cancelled.")
     return ConversationHandler.END
 
-def run_bot():
+
+async def run_bot():
     app_telegram = (
         ApplicationBuilder()
         .token(TELEGRAM_BOT_TOKEN)
@@ -257,20 +258,20 @@ def run_bot():
         fallbacks=[CommandHandler("cancel", cancel)],
     )
     app_telegram.add_handler(conv)
-    app_telegram.run_polling()  # blocking, but clean
+
+    await app_telegram.run_polling()
 
 
+
+import asyncio
+from uvicorn import Config, Server
+
+async def run():
+    server = Server(Config("main:app", host="0.0.0.0", port=8000))
+    await asyncio.gather(
+        server.serve(),
+        run_bot()
+    )
 
 if __name__ == "__main__":
-    import asyncio
-    from uvicorn import Config, Server
-
-    async def run():
-        config = Config("main:app", host="0.0.0.0", port=8000, reload=True)
-        server = Server(config)
-        await asyncio.gather(
-            server.serve(),
-            run_bot()
-        )
-
     asyncio.run(run())
