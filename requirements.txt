@@ -1,3 +1,4 @@
+gotrue==2.7.1
 fastapi
 uvicorn
 pydantic

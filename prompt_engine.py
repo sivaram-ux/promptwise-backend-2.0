@@ -7,8 +7,6 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
-print("🔍 SUPABASE_URL:", os.getenv("SUPABASE_URL"))
-print("🔍 SUPABASE_KEY:", os.getenv("SUPABASE_KEY")[:5], "..." if os.getenv("SUPABASE_KEY") else None)
 # Init model
 model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
 
