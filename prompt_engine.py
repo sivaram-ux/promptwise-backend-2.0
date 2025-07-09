@@ -173,6 +173,7 @@ def extract_json_from_response(response_text: str):
             print(f"⚠️ JSON decode error: {e}")
     else:
         print("⚠️ JSON block not found.")
+        print(json_str)
     return None
 
 

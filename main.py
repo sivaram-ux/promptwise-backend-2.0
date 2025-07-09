@@ -53,14 +53,14 @@ async def optimize_endpoint(data: OptimizeRequest):
         optimized += chunk.content
 
     if os.environ.get("SUPABASE_KEY") and os.environ.get("SUPABASE_URL"):
-        log_prompt_to_supabase(
+        id = log_prompt_to_supabase(
             original_prompt=data.prompt,
             optimized_prompt=optimized,
             mode=data.mode,
             model_used="gemini-2.5-flash"
         )
 
-    return {"optimized_prompt": optimized}
+    return {"id":id,"optimized_prompt": optimized}
 
 @app.post("/explain")
 async def explain_endpoint(data: ExplainRequest):
