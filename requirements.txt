@@ -3,7 +3,7 @@ uvicorn
 pydantic
 langchain
 langchain_google_genai
-supabase
 aiohttp
 python-telegram-bot==20.7
 supabase
+httpx
