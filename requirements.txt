@@ -4,3 +4,4 @@ pydantic
 langchain
 langchain_google_genai
 supabase
+python-telegram-bot==20.7
