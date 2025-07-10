@@ -1,6 +1,6 @@
 import asyncio
 import uvicorn
-from promptwise_telegram_bot import main_bot  # assume this is async
+from promptwise_full_bot import main_bot  # assume this is async
 from main2 import app  # FastAPI app
 
 async def start_uvicorn():
