@@ -181,10 +181,12 @@ from supabase import create_client
 import datetime
 import uuid
 
+from functools import lru_cache
+
+@lru_cache()
 def get_supabase():
     return create_client(SUPABASE_URL, SUPABASE_KEY)
 
-supabase = get_supabase()
 
 def log_prompt_to_supabase(
     original_prompt,
@@ -194,6 +196,7 @@ def log_prompt_to_supabase(
     user_location="global",
     session_id=None
 ):
+    supabase = get_supabase()
     session_id = session_id or str(uuid.uuid4())
     timestamp = datetime.datetime.utcnow().isoformat()
 
@@ -221,6 +224,7 @@ def log_prompt_to_supabase(
 
 def save_deep_research_questions_separately(prompt_id: str, questions_asked: str, answers: str, preferences: str = None):
     try:
+        supabase = get_supabase()
         response = supabase.table("deep_research_questions").insert({
             "prompt_id": prompt_id,
             "questions_asked": questions_asked,
@@ -236,6 +240,7 @@ def save_deep_research_questions_separately(prompt_id: str, questions_asked: str
 
 def save_explanation_separately(prompt_id: str, explanation_dict: dict):
     try:
+        supabase = get_supabase()
         response = supabase.table("prompt_explanations").insert({
             "prompt_id": prompt_id,
             "explanation_json": explanation_dict
