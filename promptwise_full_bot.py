@@ -186,7 +186,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ Canceled.")
     return ConversationHandler.END
 
-def main_bot():
+async def main_bot():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 
     conv = ConversationHandler(
@@ -203,7 +203,8 @@ def main_bot():
     )
 
     app.add_handler(conv)
-    app.run_polling()
+    await app.run_polling()
 
 if __name__ == "__main__":
-    main_bot()
+    import asyncio
+    asyncio.run(main_bot())
