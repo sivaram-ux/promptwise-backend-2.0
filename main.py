@@ -105,7 +105,7 @@ if __name__ == "__main__":
     import threading
     from promptwise_full_bot import *
     main_bot()
-    #uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    #uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)#original
     # Thread target for the FastAPI server
     def run_server():
         uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
