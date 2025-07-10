@@ -102,4 +102,22 @@ async def log_feedback_endpoint(data: FeedbackLogRequest):
 # === Entry Point ===
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    import threading
+    from promptwise_full_bot import *
+    main_bot()
+    #uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    # Thread target for the FastAPI server
+    def run_server():
+        uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+
+    # Create threads
+    bot_thread = threading.Thread(target=main_bot)
+    server_thread = threading.Thread(target=run_server)
+
+    # Start threads
+    bot_thread.start()
+    server_thread.start()
+
+    # Wait for both to complete (optional)
+    bot_thread.join()
+    server_thread.join()
