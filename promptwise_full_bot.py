@@ -10,7 +10,8 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
-from keys import TELEGRAM_BOT_TOKEN  # put your bot token here
+import os
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")  # put your bot token here
 
 ASK_PROMPT, ASK_MODE, ASK_FOLLOWUP, ASK_EXPLAIN = range(4)
 
