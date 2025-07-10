@@ -181,7 +181,10 @@ from supabase import create_client
 import datetime
 import uuid
 
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+def get_supabase():
+    return create_client(SUPABASE_URL, SUPABASE_KEY)
+
+supabase = get_supabase()
 
 def log_prompt_to_supabase(
     original_prompt,
